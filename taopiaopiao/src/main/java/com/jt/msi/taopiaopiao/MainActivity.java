@@ -14,7 +14,12 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(that,SecondActivity.class));
+                if(that==null){
+                    startActivity(new Intent(MainActivity.this,SecondActivity.class));
+                }else {
+                    startActivity(new Intent(that,SecondActivity.class));
+                }
+
             }
         });
     }

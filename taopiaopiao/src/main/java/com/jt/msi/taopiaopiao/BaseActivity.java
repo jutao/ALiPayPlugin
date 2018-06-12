@@ -84,9 +84,14 @@ public class BaseActivity extends Activity implements PayInterfaceActivity {
     @Override
     public void startActivity(Intent intent) {
 //        ProxyActivity --->className
-        Intent m = new Intent();
-        m.putExtra("className", intent.getComponent().getClassName());
-        that.startActivity(m);
+        if(that==null){
+            super.startActivity(intent);
+        }else {
+            Intent m = new Intent();
+            m.putExtra("className", intent.getComponent().getClassName());
+            that.startActivity(m);
+        }
+
     }
 
     @Override
