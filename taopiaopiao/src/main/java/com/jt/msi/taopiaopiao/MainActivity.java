@@ -18,6 +18,7 @@ public class MainActivity extends BaseActivity {
                     startActivity(new Intent(MainActivity.this,SecondActivity.class));
                 }else {
                     startActivity(new Intent(that,SecondActivity.class));
+                    startService(new Intent(that,OneService.class));
                 }
 
             }

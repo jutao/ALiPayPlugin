@@ -1,6 +1,7 @@
 package com.jt.msi.taopiaopiao;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
@@ -92,6 +93,17 @@ public class BaseActivity extends Activity implements PayInterfaceActivity {
             that.startActivity(m);
         }
 
+    }
+
+    @Override
+    public ComponentName startService(Intent intent) {
+        if(that==null){
+            return super.startService(intent);
+        }else {
+            Intent m = new Intent();
+            m.putExtra("serviceName", intent.getComponent().getClassName());
+            return that.startService(m);
+        }
     }
 
     @Override
