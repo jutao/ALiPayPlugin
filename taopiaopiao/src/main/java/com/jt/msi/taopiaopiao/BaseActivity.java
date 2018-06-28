@@ -1,8 +1,10 @@
 package com.jt.msi.taopiaopiao;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -71,6 +73,23 @@ public class BaseActivity extends Activity implements PayInterfaceActivity {
 
     }
 
+    @Override
+    public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        if (that != null) {
+            return that.registerReceiver(receiver, filter);
+        } else {
+            return super.registerReceiver(receiver, filter);
+        }
+    }
+
+    @Override
+    public void sendBroadcast(Intent intent) {
+        if (that != null) {
+            that.sendBroadcast(intent);
+        } else {
+            super.sendBroadcast(intent);
+        }
+    }
 
     @NonNull
     @Override
@@ -85,9 +104,9 @@ public class BaseActivity extends Activity implements PayInterfaceActivity {
     @Override
     public void startActivity(Intent intent) {
 //        ProxyActivity --->className
-        if(that==null){
+        if (that == null) {
             super.startActivity(intent);
-        }else {
+        } else {
             Intent m = new Intent();
             m.putExtra("className", intent.getComponent().getClassName());
             that.startActivity(m);
@@ -97,9 +116,9 @@ public class BaseActivity extends Activity implements PayInterfaceActivity {
 
     @Override
     public ComponentName startService(Intent intent) {
-        if(that==null){
+        if (that == null) {
             return super.startService(intent);
-        }else {
+        } else {
             Intent m = new Intent();
             m.putExtra("serviceName", intent.getComponent().getClassName());
             return that.startService(m);
@@ -136,56 +155,56 @@ public class BaseActivity extends Activity implements PayInterfaceActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if(that==null){
+        if (that == null) {
             super.onCreate(savedInstanceState);
         }
     }
 
     @Override
     public void onStart() {
-        if(that==null){
+        if (that == null) {
             super.onStart();
         }
     }
 
     @Override
     public void onRestart() {
-        if(that==null){
+        if (that == null) {
             super.onRestart();
         }
     }
 
     @Override
     public void onResume() {
-        if(that==null){
+        if (that == null) {
             super.onResume();
         }
     }
 
     @Override
     public void onPause() {
-        if(that==null){
+        if (that == null) {
             super.onPause();
         }
     }
 
     @Override
     public void onStop() {
-        if(that==null){
+        if (that == null) {
             super.onStop();
         }
     }
 
     @Override
     public void onDestroy() {
-        if(that==null){
+        if (that == null) {
             super.onDestroy();
         }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        if(that==null){
+        if (that == null) {
             super.onSaveInstanceState(outState);
         }
     }

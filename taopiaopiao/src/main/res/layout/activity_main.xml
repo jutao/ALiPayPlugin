@@ -17,4 +17,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btn_send_cast"
+        android:text="发送广播"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>
