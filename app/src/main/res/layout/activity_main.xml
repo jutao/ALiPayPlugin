@@ -24,4 +24,13 @@
         android:gravity="center"
         android:onClick="click"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:text="发送广播"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:onClick="sendBroadcast"
+        />
 </LinearLayout>

@@ -1,7 +1,9 @@
 package com.jt.msi.alipayplugin;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,13 +17,21 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
-
+    static final String ACTION="com.jt.msi.alipayplugin.plugin_action";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         PluginManager.getInstance().setContext(this);
+        registerReceiver(myReceiver,new IntentFilter(ACTION));
     }
+
+    BroadcastReceiver myReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(context,"我是宿主，收到消息，握手完成",Toast.LENGTH_LONG).show();
+        }
+    };
 
     public void load(View view){
         loadPlugin();
@@ -60,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(this,ProxyActivity.class);
         intent.putExtra("className",PluginManager.getInstance().getPackageInfo().activities[0].name);
         startActivity(intent);
+    }
+    public void sendBroadcast(View view){
+       Toast.makeText(getApplicationContext(),"我是宿主！插件收到请回答",Toast.LENGTH_LONG).show();
+       Intent intent=new Intent();
+       intent.setAction("com.MainActivity");
+       sendBroadcast(intent);
     }
 
 
